@@ -8,8 +8,8 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v3
-    - run: |
-        git rev-parse --short HEAD
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          git rev-parse --short HEAD
 
