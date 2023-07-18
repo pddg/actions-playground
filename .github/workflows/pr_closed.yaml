@@ -1,0 +1,15 @@
+name: Run on PR closed
+
+on:
+  pull_request:
+    types: ['closed']
+    branches: ['master']
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          git rev-parse --short HEAD
+
