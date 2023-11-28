@@ -17,3 +17,4 @@ runs:
         ls -la ../
         echo "${GITHUB_ACTION_PATH}"
         echo "${DST}"
+        echo "${PWD}"
