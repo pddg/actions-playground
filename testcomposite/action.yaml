@@ -3,7 +3,8 @@ name: Test composite action
 runs:
   using: "composite"
   steps:
-    - run: |
+    - shell: bash
+      run: |
         set -x
         ls -la ./
         ls -la ../
