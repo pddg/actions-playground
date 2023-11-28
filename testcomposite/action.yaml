@@ -8,3 +8,4 @@ runs:
         set -x
         ls -la ./
         ls -la ../
+        echo "${GITHUB_ACTION_PATH}"
