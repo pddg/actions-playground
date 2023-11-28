@@ -1,11 +1,19 @@
 name: Test composite action
 
+inputs:
+  destination:
+    description: 'Destination directory'
+    required: true
+
 runs:
   using: "composite"
   steps:
     - shell: bash
+      env:
+        DST: "${{ inputs.destination }}"
       run: |
         set -x
         ls -la ./
         ls -la ../
         echo "${GITHUB_ACTION_PATH}"
+        echo "${DST}"
