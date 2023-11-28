@@ -16,3 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pddg/actions-playground/testcomposite@main
+  run-in-container:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pddg/actions-playground/testcomposite@main
