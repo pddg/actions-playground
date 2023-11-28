@@ -1,0 +1,10 @@
+name: Test Composite Action
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pddg/actions-playground/testcomposite@main
