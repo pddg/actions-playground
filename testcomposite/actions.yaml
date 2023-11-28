@@ -1,0 +1,9 @@
+name: Test composite action
+
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        set -x
+        ls -la ./
+        ls -la ../
