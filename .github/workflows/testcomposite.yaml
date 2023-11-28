@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: pddg/actions-playground/testcomposite@main
         with:
-          destination: "${GITHUB_WORKSPACE}"
+          destination: "${{ github.workspace }}"
   run-with-workdir:
     runs-on: ubuntu-latest
     defaults:
@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: pddg/actions-playground/testcomposite@main
         with:
-          destination: "${GITHUB_WORKSPACE}"
+          destination: "${{ github.workspace}}"
   run-in-container:
     runs-on: ubuntu-latest
     container:
@@ -28,4 +28,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: pddg/actions-playground/testcomposite@main
         with:
-          destination: "${GITHUB_WORKSPACE}"
+          destination: "${{ github.workspace }}"
