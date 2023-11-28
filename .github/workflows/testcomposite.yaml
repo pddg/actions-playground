@@ -8,3 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pddg/actions-playground/testcomposite@main
+  run-with-workdir:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /tmp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pddg/actions-playground/testcomposite@main
