@@ -1,0 +1,9 @@
+name: Workflow call sample
+
+on: [push]
+
+jobs:
+  run:
+    uses: pddg/actions-playground/.github/workflows/test_call.yaml@main
+    with:
+      version: "call_test"
