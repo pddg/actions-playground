@@ -6,13 +6,46 @@ on:
       version:
         required: false
         default: "main"
-        type: string
-
+        type: choice
+        options:
+          - main
+          - develop
+          - feature
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pddg/actions-playground/testcomposite@${{ inputs.version }}
-      - run: |
-          echo hello
+      - if: inputs.version == 'main'
+        id: main
+        run: |
+          echo "output=main" >> "${GITHUB_OUTPUT}"
+      - if: inputs.version == 'develop'
+        id: develop
+        run: |
+          echo "output=develop" >> "${GITHUB_OUTPUT}"
+      - if: inputs.version == 'feature'
+        id: feature
+        run: |
+          echo "output=feature" >> "${GITHUB_OUTPUT}" 
+      - env:
+          VERSION: ${{ inputs.version }}
+          OUTPUT_MAIN: ${{ steps.main.outputs.output }}
+          OUTPUT_DEVELOP: ${{ steps.develop.outputs.output }}
+          OUTPUT_FEATURE: ${{ steps.feature.outputs.output }}
+        run: |
+          case "${VERSION}" in
+            main)
+              echo "${OUTPUT_MAIN}"
+              ;;
+            develop)
+              echo "${OUTPUT_DEVELOP}"
+              ;;
+            feature)
+              echo "${OUTPUT_FEATURE}"
+              ;;
+            *)
+              echo "error"
+              exit 1
+              ;;
+          esac  
