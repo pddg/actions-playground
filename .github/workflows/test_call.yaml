@@ -4,13 +4,8 @@ on:
   workflow_call:
     inputs:
       version:
-        required: false
-        default: "main"
-        type: choice
-        options:
-          - main
-          - develop
-          - feature
+        required: true
+        type: string
 jobs:
   run:
     runs-on: ubuntu-latest
