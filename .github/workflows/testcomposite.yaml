@@ -8,8 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pddg/actions-playground/testcomposite@main
+        id: testcomposite
         with:
           destination: "${{ github.workspace }}"
+      - run: |
+          echo "The output was ${{ steps.testcomposite.outputs.use-input }}"
   run-with-workdir:
     runs-on: ubuntu-latest
     defaults:
