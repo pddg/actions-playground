@@ -9,6 +9,7 @@ runs:
   using: "composite"
   steps:
     - shell: bash
+      id: first
       env:
         DST: "${{ inputs.destination }}"
       run: |
@@ -17,4 +18,10 @@ runs:
         ls -la ../
         echo "${GITHUB_ACTION_PATH}"
         echo "${DST}"
-        echo "${PWD}"
+        echo "current-dir=${PWD}" >> "${GITHUB_OUTPUT}"
+    - shell: bash
+      id: second
+      env:
+        CURRENT_DIR: "${{ steps.first.outputs.current-dir }}"
+      run: |
+        echo "current-dir=${CURRENT_DIR}"
