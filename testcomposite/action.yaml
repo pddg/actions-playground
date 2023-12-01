@@ -5,6 +5,11 @@ inputs:
     description: 'Destination directory'
     required: true
 
+outputs:
+  use-input:
+    description: 'Use input'
+    value: ${{ inputs.destination }}
+
 runs:
   using: "composite"
   steps:
