@@ -25,6 +25,10 @@ runs:
         echo "${DST}"
         echo "current-dir=${PWD}" >> "${GITHUB_OUTPUT}"
     - shell: bash
+      run: |
+        ls -la "${GITHUB_ACTION_PATH}"
+        cd "${GITHUB_ACTION_PATH}" && git log --oneline || true
+    - shell: bash
       id: second
       env:
         CURRENT_DIR: "${{ steps.first.outputs.current-dir }}"
