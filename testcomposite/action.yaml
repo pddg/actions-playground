@@ -14,23 +14,8 @@ runs:
   using: "composite"
   steps:
     - shell: bash
-      id: first
-      env:
-        DST: "${{ inputs.destination }}"
       run: |
         set -x
-        ls -la ./
-        ls -la ../
-        echo "${GITHUB_ACTION_PATH}"
-        echo "${DST}"
-        echo "current-dir=${PWD}" >> "${GITHUB_OUTPUT}"
-    - shell: bash
-      run: |
         ls -la "${GITHUB_ACTION_PATH}"
+        ls -la "${GITHUB_ACTION_PATH}/../"
         cd "${GITHUB_ACTION_PATH}" && git log --oneline || true
-    - shell: bash
-      id: second
-      env:
-        CURRENT_DIR: "${{ steps.first.outputs.current-dir }}"
-      run: |
-        echo "current-dir=${CURRENT_DIR}"
