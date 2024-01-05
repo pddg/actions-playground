@@ -1,0 +1,25 @@
+name: Use mysql
+
+on:
+  - push
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    services:
+      db:
+        image: container-registry.oracle.com/mysql/community-server:8.0.32
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ROOT_HOST: '%'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ping MySQL
+        run: |
+          set -x
+          until (mysql --protocol=tcp -uroot -proot -e 'SELECT 1'); do
+            sleep 1
+          done
