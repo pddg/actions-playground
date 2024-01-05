@@ -16,6 +16,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_ROOT_HOST: '%'
         options: >-
+          --health-cmd "true"
           --health-interval 1s
           --health-timeout 1s
           --health-retries 120
