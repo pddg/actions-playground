@@ -15,6 +15,10 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_ROOT_HOST: '%'
+        options: >-
+          --health-interval 1s
+          --health-timeout 1s
+          --health-retries 120
     steps:
       - uses: actions/checkout@v4
       - name: Ping MySQL
