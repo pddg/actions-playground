@@ -11,7 +11,7 @@ jobs:
         id: restore
         with:
           path: .cache
-          key: test-${{ runner.os }}-${{ runner.arch }}-${{ github.sha }}
+          key: test-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}
           restore-keys: |
             test-${{ runner.os }}-${{ runner.arch }}-
       - run: |
@@ -20,7 +20,7 @@ jobs:
           mkdir -p .cache
           echo ${{ github.sha }} > .cache/sha
       - uses: actions/cache/save@v4
-        if: github.ref_name == 'cachemiss' && steps.restore.outputs.cache-hit == 'false'
+        if: github.ref_name == 'cachemiss' && steps.restore.outputs.cache-hit != 'true'
         with:
           path: .cache
-          key: test-${{ runner.os }}-${{ runner.arch }}-${{ github.sha }}
+          key: test-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}
