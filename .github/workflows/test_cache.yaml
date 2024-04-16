@@ -1,0 +1,26 @@
+name: cache
+
+on: [push]
+
+jobs:
+  save:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache/restore@v4
+        id: restore
+        with:
+          path: .cache
+          key: test-${{ runner.os }}-${{ runner.arch }}-${{ github.sha }}
+          restore-keys: |
+            test-${{ runner.os }}-${{ runner.arch }}-
+      - run: |
+          echo "steps.restore.outputs.cache-hit=${{ steps.restore.outputs.cache-hit }}"
+          echo "github.ref_name=${{ github.ref_name }}"
+          mkdir -p .cache
+          echo ${{ github.sha }} > .cache/sha
+      - uses: actions/cache/save@v4
+        if: github.ref_name == 'cachemiss' && steps.restore.outputs.cache-hit == 'false'
+        with:
+          path: .cache
+          key: test-${{ runner.os }}-${{ runner.arch }}-${{ github.sha }}
