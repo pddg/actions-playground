@@ -1,0 +1,36 @@
+name: Run conditional action
+description: Run a conditional action based on the value of previous steps
+
+runs:
+  using: "composite"
+  steps:
+    - name: Output the value
+      id: output
+      shell: bash
+      run: |
+        echo "key=value" >> $GITHUB_OUTPUT
+    - name: DO NOT RUN if the value is "value"
+      if: steps.output.outputs.key == 'value'
+      shell: bash
+      run: |
+        echo "This should not run"
+    - name: RUN if the value is "value"
+      if: steps.output.outputs.key == 'value'
+      shell: bash
+      run: |
+        echo "This should run"
+    - name: Exit with error
+      shell: bash
+      run: |
+        exit 1
+    - name: recover from error
+      if: failure()
+      shell: bash
+      run: |
+        echo "Recovered from error"
+        exit 1
+    - name: Run always
+      if: always()
+      shell: bash
+      run: |
+        echo "This should always run"
