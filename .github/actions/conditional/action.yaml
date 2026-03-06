@@ -10,7 +10,7 @@ runs:
       run: |
         echo "key=value" >> $GITHUB_OUTPUT
     - name: DO NOT RUN if the value is "value"
-      if: steps.output.outputs.key == 'value'
+      if: steps.output.outputs.key != 'value'
       shell: bash
       run: |
         echo "This should not run"
