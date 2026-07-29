@@ -8,11 +8,6 @@ jobs:
     permissions: {}
     steps:
       - run: |
-          dig github.com
-          dig google.com
-      
-      - run: |
-          curl -v https://github.com
-          curl -v https://google.com
+          env
         env:
           NO_PROXY: "*"
