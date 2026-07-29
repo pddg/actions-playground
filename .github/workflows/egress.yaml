@@ -1,0 +1,12 @@
+name: Test Native Egress
+on:
+  push:
+
+jobs:
+  run:
+    runs-on: ubuntu-24.04-firewall
+    permissions: {}
+    steps:
+      - run: |
+          curl google.com
+          curl github.com
