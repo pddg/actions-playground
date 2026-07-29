@@ -8,6 +8,6 @@ jobs:
     permissions: {}
     steps:
       - run: |
-          env
+          curl --resolve github.com:443:20.27.177.113 https://github.com/
         env:
           NO_PROXY: "*"
